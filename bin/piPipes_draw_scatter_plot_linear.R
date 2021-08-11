@@ -37,7 +37,7 @@ main = paste (strwrap(main, width = 80), collapse = "\n")
 
 pdf (paste (argv[5],".pdf", sep=""), title=main )
 
-if (ncol(sample1)==4) { # with grouping information 
+if (ncol(sample1)==4) { # with grouping information
         colnames (sample1) = c("name", "group", "S1", "AS1")
         colnames (sample2) = c("name", "group", "S2", "AS2")
         sample = merge (sample1, sample2, by="name")
@@ -45,184 +45,200 @@ if (ncol(sample1)==4) { # with grouping information
 		lim1 = floor (min (sample$S1, sample$S2, sample$AS1, sample$AS2)) - 0.5
 		lim2 = ceiling (max (sample$S1, sample$S2, sample$AS1, sample$AS2)) + 0.5
 
-		gg=ggplot( sample, aes(x = S1, y = AS1, color= factor (group.x)) ) + 
+		gg=ggplot( sample, aes(x = S1, y = AS1, color= factor (group.x)) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 				) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.75, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
-		    guides(colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
+		    guides(colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) +
 		    xlab ( substitute ( paste(italic(name1) ,"  sense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name1), "  antisense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
-		
-		gg=ggplot( sample, aes(x = S2, y = AS2, color= factor (group.x)) ) + 
+
+		gg=ggplot( sample, aes(x = S2, y = AS2, color= factor (group.x)) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 		 		) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.75, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
-		    guides (colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
+		    guides (colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) +
 		    xlab ( substitute ( paste(italic(name2) ,"  sense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name2), "  antisense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
-		
-		gg=ggplot( sample, aes(x = S1, y = S2, color= factor (group.x)) ) + 
+
+		gg=ggplot( sample, aes(x = S1, y = S2, color= factor (group.x)) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4,margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 		 		) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.75, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
-		    guides(colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
+		    guides(colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) +
 		    xlab ( substitute ( paste(italic(name1) ,"  sense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name2), "  sense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
-		
-		gg=ggplot( sample, aes(x = AS1, y = AS2, color= factor (group.x)) ) + 
+
+		gg=ggplot( sample, aes(x = AS1, y = AS2, color= factor (group.x)) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 		 		) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.75, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
-		    guides(colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
+		    guides(colour = guide_legend (title=expression (paste (italic("Li., Cell, 2009"), " Transposon group")), title.position = "top")) +
 		    xlab ( substitute ( paste(italic(name1) ,"  antisense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name2), "  antisense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 			print (gg)
 
 } else {
         colnames (sample1) = c("name", "S1", "AS1")
         colnames (sample2) = c("name", "S2", "AS2")
         sample = merge (sample1, sample2, by="name")
-		
+
 		lim1 = floor (min (sample$S1, sample$S2, sample$AS1, sample$AS2)) - 1
 		lim2 = ceiling (max (sample$S1, sample$S2, sample$AS1, sample$AS2)) + 1
-		
-		gg=ggplot( sample, aes(x = S1, y = AS1) ) + 
+
+		gg=ggplot( sample, aes(x = S1, y = AS1) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 				) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.5, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
 		    xlab ( substitute ( paste(italic(name1) ,"  sense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name1), "  antisense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
 
-		gg=ggplot( sample, aes(x = S2, y = AS2) ) + 
+		gg=ggplot( sample, aes(x = S2, y = AS2) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 		 		) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.5, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
 		    xlab ( substitute ( paste(italic(name2) ,"  sense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name2), "  antisense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
 
-		gg=ggplot( sample, aes(x = S1, y = S2) ) + 
+		gg=ggplot( sample, aes(x = S1, y = S2) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 		 		) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.5, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
 		    xlab ( substitute ( paste(italic(name1) ,"  sense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name2), "  sense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
 
-		gg=ggplot( sample, aes(x = AS1, y = AS2) ) + 
+		gg=ggplot( sample, aes(x = AS1, y = AS2) ) +
 			theme (
 				plot.margin=unit(c(1,1,0,0),"lines"),
-				axis.text=element_text (size=4), 
-				axis.title=element_text(size=6), 
-				legend.margin=unit(0,"lines"), 
-				panel.margin=unit(0, "lines"), 
-				axis.ticks.margin=unit(0,"lines"),
+				axis.text=element_text (size=4, margin=unit(0,"lines")),
+				axis.title=element_text(size=6),
+#				legend.margin=unit(0,"lines"),
+                legend.spacing=unit(0,"lines"),
+#				panel.margin=unit(0, "lines"),
+                panel.spacing=unit(0, "lines"),
+#				axis.ticks.margin=unit(0,"lines"),
 				legend.key.size=unit(0.5,"lines")
 		 		) +
-		    scale_size_manual( values=c(0,8) ) + 
-		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') + 
-		    theme_few () + 
-		    scale_fill_continuous(guide = "legend") + 
+		    scale_size_manual( values=c(0,8) ) +
+		    geom_abline (intercept=0, slope=1, colour="darkgrey", linetype='dashed') +
+		    theme_few () +
+		    scale_fill_continuous(guide = "legend") +
 		    geom_point(size=5, alpha=0.5, na.rm=T) +
-		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) + 
+		    scale_colour_manual(values=c("lightblue","black","darkgreen","red")) +
 		    xlab ( substitute ( paste(italic(name1) ,"  antisense, mean length"), list(name1=name1, name2=name2))) +
 		    ylab ( substitute ( paste(italic(name2), "  antisense, mean length"), list(name1=name1, name2=name2))) +
-		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2)) 
+		    coord_fixed(ratio=1, xlim = c(lim1, lim2), ylim = c(lim1, lim2))
 		print (gg)
 }
 

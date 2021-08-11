@@ -71,6 +71,7 @@ grid.arrange(
 		piRNA_lendis_gg, 
 		ncol=3,
 		as.table=TRUE, 
-		main = textGrob(main, vjust = 1, gp = gpar(fontface = "bold", cex = 1))
+		bottom = textGrob(main, gp = gpar(fontface = "bold", cex = 1))        
+#		main = textGrob(main, vjust = 1, hjust = 0.5, gp = gpar(fontface = "bold", cex = 1))
 )
 gc = dev.off()

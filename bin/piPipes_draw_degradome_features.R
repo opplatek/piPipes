@@ -45,15 +45,17 @@ if (length(argv)==4) {
 		deg_5end_per_gg,
 		deg_smRNA_pp,
 		ncol=1,
-		as.table=TRUE, 
-		main = textGrob(main, vjust = 1, gp = gpar(fontface = "bold", cex = 1))
+		as.table=TRUE,
+		bottom = textGrob(main, gp = gpar(fontface = "bold", cex = 1))
+#		main = textGrob(main, vjust = 1, hjust = 0.5, gp = gpar(fontface = "bold", cex = 1))
 	)
 } else {
 	grid.arrange(
 		deg_5end_per_gg,
 		ncol=1,
-		as.table=TRUE, 
-		main = textGrob(main, vjust = 1, gp = gpar(fontface = "bold", cex = 1))
+		as.table=TRUE,
+		bottom = textGrob(main, gp = gpar(fontface = "bold", cex = 1))        
+#		main = textGrob(main, vjust = 1, hjust = 0.5, gp = gpar(fontface = "bold", cex = 1))
 	)
 }
 gc = dev.off()

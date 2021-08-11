@@ -55,18 +55,20 @@ draw_smRNA_lendis = function (file, main) {
 	    theme_minimal() +
 	    theme( panel.grid.major=element_blank(),
 	           panel.grid.minor=element_blank(),
-	           axis.ticks.x=element_blank(),
+#	           axis.ticks.x=element_blank(),
 	           title=element_text(size=6, colour='black'),
 	           plot.margin=unit(c(1,1,0,0),"lines"),
-	           legend.margin=unit(0,"lines"),
-	           panel.margin=unit(0, "lines"),
-	           axis.ticks.margin=unit(0,"lines"),
-	           axis.text=element_text (size=4),
+#	           legend.margin=unit(0,"lines"),
+             legend.spacing=unit(0,"lines"),
+#	           panel.margin=unit(0, "lines"),
+	           panel.spacing=unit(0, "lines"),
+#	           axis.ticks.margin=unit(0,"lines"), # https://stackoverflow.com/questions/34528664/substitution-for-deprecated-axis-ticks-margin-in-ggplot2-2-0/34529677
+	           axis.text=element_text (size=4,margin=unit(0,"lines")),
 	           axis.title=element_text(size=6),
 	           axis.ticks = element_line(size = 0.5) ) +
 	    geom_bar (stat="identity", colour="blue", fill="blue") +
 	    geom_bar (aes(V1,V3), stat="identity", colour="red", fill="red") +
-	    scale_x_discrete (breaks=c(minRow:maxRow)) +
+	    scale_x_continuous (breaks=seq(minRow,maxRow,by=2), labels=seq(minRow,maxRow,by=2)) +
 	    coord_cartesian(xlim = c(minRow, maxRow)) +
 	    scale_y_continuous(labels = comma, breaks=seq(ru*-20, ru*20, 2*ru)) +
 	    labs(title=paste("Length distribution", main, sep="\t")) +
@@ -85,22 +87,24 @@ draw_ping_pong = function (ppbedfile, main) {
 	    theme_tufte () +
 	    theme( panel.grid.major=element_blank(),
 	           panel.grid.minor=element_blank(),
-	           axis.ticks.x=element_blank(),
-	           title=element_text(size=7, colour='black',family="Helvetica"),
+#	           axis.ticks.x=element_blank(),
+	           title=element_text(size=7, colour='black'),
 	           plot.margin=unit(c(1,1,0,0),"lines"),
-	           legend.margin=unit(0,"lines"),
-	           panel.margin=unit(0, "lines"),
-	           axis.ticks.margin=unit(0,"lines"),
+#	           legend.margin=unit(0,"lines"),
+             legend.spacing=unit(0,"lines"),
+#	           panel.margin=unit(0, "lines"),
+             panel.spacing=unit(0, "lines"),
+#	           axis.ticks.margin=unit(0,"lines"), # https://stackoverflow.com/questions/34528664/substitution-for-deprecated-axis-ticks-margin-in-ggplot2-2-0/34529677
 	           legend.key.size=unit(0.5,"lines"),
 	           legend.title=element_blank(),
 	           legend.position = "bottom",
-	           axis.text=element_text (size=5,family="Helvetica"),
-	           axis.text.x=element_text (size=5,family="Helvetica"),
-	           legend.text=element_text(size=5,family="Helvetica"),
+	           axis.text=element_text (size=5,margin=unit(0,"lines")),
+	           axis.text.x=element_text (size=5),
+	           legend.text=element_text(size=5),
 	           axis.title=element_text(size=6),
 	           axis.ticks=element_line(size = 0.5) ) +
 	    geom_bar (stat="identity") +
-	    scale_x_discrete (breaks=c(1,5,10,15,20,25)) +
+	    scale_x_continuous (breaks=c(1,5,10,15,20,25), labels=c(1,5,10,15,20,25)) +
 	    scale_y_continuous(labels = comma, breaks=seq(0,max(ppbed$V2),roundUp(max(ppbed$V2)/10))) +
 	    labs(title=paste("5' to 5' overlap,", main, paste("Z = ", signif (zScore,3),sep=""), sep="\t")) +
 	    xlab("Length(nt)") +
@@ -124,22 +128,24 @@ draw_smRNA_percentage = function (file, ext, main) {
 	    theme(
 	        panel.grid.major=element_blank(),
 	        panel.grid.minor=element_blank(),
-	        axis.ticks.x=element_blank(),
-	        title=element_text(size=6, colour='black',family="Helvetica"),
+#	        axis.ticks.x=element_blank(),
+	        title=element_text(size=6, colour='black'),
 	        plot.margin=unit(c(1,1,0,0),"lines"),
-	        legend.margin=unit(0,"lines"),
-	        panel.margin=unit(0, "lines"),
-	        axis.ticks.margin=unit(0,"lines"),
+#	        legend.margin=unit(0,"lines"),
+          legend.spacing=unit(0,"lines"),
+#	        panel.margin=unit(0, "lines"),
+          panel.spacing=unit(0, "lines"),
+#	        axis.ticks.margin=unit(0,"lines"), # https://stackoverflow.com/questions/34528664/substitution-for-deprecated-axis-ticks-margin-in-ggplot2-2-0/34529677
 	        legend.key.size=unit(0.5,"lines"),
 	        legend.title=element_blank(),
 	        legend.position = "bottom",
-	        axis.text=element_text (size=4,family="Helvetica"),
-	        axis.text.x=element_text (size=5,family="Helvetica"),
-	        legend.text=element_text(size=5,family="Helvetica"),
+	        axis.text=element_text (size=4,margin=unit(0,"lines")),
+	        axis.text.x=element_text (size=5),
+	        legend.text=element_text(size=5),
 	        axis.title=element_text(size=6),
 	        axis.ticks=element_line(size = 0.5)) +
 	    geom_bar(position = "fill", stat="identity") +
-	    scale_x_discrete (breaks=c(-30,-25,-20,-15,-10,-5,0,4,9,14,19,24,29)) +
+	    scale_x_discrete (breaks=c(-30,-25,-20,-15,-10,-5,0,4,9,14,19,24,29), labels=c(-30,-25,-20,-15,-10,-5,0,4,9,14,19,24,29)) +
 	    scale_y_continuous(labels = percent_format()) +
 	    labs(title=main) +
 	    xlab("Relative position (bp)") +
@@ -179,7 +185,7 @@ draw_microRNA_balloon = function (t1, hetName, mutName, outDir) {
 
 	hetName=gsub ("\\."," ",hetName)
 	mutName=gsub ("\\."," ",mutName)
-	pdf (paste (outDir, '/', hetName, mutName, t1$V1[1], ".miRNAballoonPlot.pdf", sep=''), family="Helvetica")
+	pdf (paste (outDir, '/', hetName, mutName, t1$V1[1], ".miRNAballoonPlot.pdf", sep=''))
 	par (mfrow=c(2,2),mar=c(5,2,2,1))
 
 	main = paste (t1$V1[1], hetName," 5' arm:", sum4th, sep=' ')
@@ -211,8 +217,9 @@ draw_agg = function (t1, name) {
 	theme( panel.border = element_blank () ,
 		panel.grid.major=element_blank(),
 		panel.grid.minor=element_blank(),
-		plot.title=element_text(family="Helvetica", lineheight=.8) ) +
+		plot.title=element_text(lineheight=.8) ) +
 	ggtitle(name) +
+	theme(plot.title = element_text(hjust = 0.5)) +
 	geom_line( size=1, alpha=0.75 ) +
 	xlab ("Position (bp)") +
 	ylab("ChIP-seq enriched signal")
