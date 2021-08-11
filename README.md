@@ -188,7 +188,8 @@ Variations were called using different algorithms.
 
 A more detailed explanation can be found [here](https://github.com/bowhan/piPipes/wiki/Genome-seq).
 
-##CHANGES/NOTES FOR THE ORIGINAL PIPIPES
+## CHANGES/NOTES FOR THE ORIGINAL PIPIPES (https://github.com/bowhan/piPipes)
+
 ### Install piPipes - commit c93bde3; https://github.com/bowhan/piPipes
 **NOTE:** All the below commits are not (08/11) included in https://github.com/opplatek/piPipes
 ```
