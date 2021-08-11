@@ -188,6 +188,62 @@ Variations were called using different algorithms.
 
 A more detailed explanation can be found [here](https://github.com/bowhan/piPipes/wiki/Genome-seq).
 
+##CHANGES/NOTES FOR THE ORIGINAL PIPIPES
+### Install piPipes - commit c93bde3; https://github.com/bowhan/piPipes
+**NOTE:** All the below commits are not (08/11) included in https://github.com/opplatek/piPipes
+```
+cd /home/joppelt/tools
+git clone https://github.com/bowhan/piPipes.git
+mv piPipes piPipes-c93bde3
+cd piPipes-c93bde3/
+make
+ln -s $(pwd)/piPipes $CONDA_PREFIX/bin/piPipes
+```
+
+### Edit python scripts to use Python2 (system-wide) instead of Python3 from conda
+**Note:** you can also do Python virtual env and load it from conda somehow...
+```
+sed -i 's/#! \/usr\/bin\/env python/#! \/usr\/bin\/env python2/' bin/piPipes_nuc_percentage.py
+sed -i 's/#! \/usr\/bin\/env python/#! \/usr\/bin\/env python2/' bin/piPipes_extract_organiam_from_fa.py
+```
+
+### Run piPipes installer and install mm10 with following parameters
+```
+/home/joppelt/tools/piPipes-c93bde3/piPipes.sh  install -g mm10
+export rRNA_MM=2
+export hairpin_MM=1
+export genome_MM=2
+export transposon_MM=2
+export siRNA_bot=20
+export siRNA_top=25
+export piRNA_bot=24
+export piRNA_top=32
+```
+
+If the automatic download of the reference genome from iGenomes fails you can download it manually and place in the appropriate folder https://support.illumina.com/sequencing/sequencing_software/igenome.html
+```
+wget http://igenomes.illumina.com.s3-website-us-east-1.amazonaws.com/Mus_musculus/UCSC/mm10/Mus_musculus_UCSC_mm10.tar.gz -O common/mm10/mm10.fa.tar.gz && tar xvzf common/mm10/mm10.fa.tar.gz --directory common/mm10
+mv Mus_musculus/UCSC/mm10/* common/mm10/
+rm -r Mus_musculus/UCSC/mm10
+```
+
+### piPipes need a lot of R packages (we have already installed it in conda)
+```
+pkgTest ("ggplot2")
+pkgTest ("grid")
+pkgTest ("ggthemes")
+pkgTest ("gplots")
+pkgTest ("parallel")
+pkgTest ("scales")
+pkgTest ("reshape")
+pkgTest ("gridExtra")
+pkgTest ("RColorBrewer")
+pkgTest ("gdata")
+pkgTest ("labeling")
+pkgTest ("RCircos")
+BiocManager::install("cummeRbund")
+```
+
 ##CITATION
 
 Han, B. W., Wang, W., Zamore, P. D., and Weng, Z. (2015). [piPipes: a set of pipelines for piRNA and transposon analysis via small RNA-seq, RNA-seq, degradome- and CAGE-seq, ChIP-seq and genomic DNA sequencing. Bioinformatics 31, 593-595.](http://bioinformatics.oxfordjournals.org/content/31/4/593)
