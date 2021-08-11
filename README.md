@@ -188,6 +188,39 @@ Variations were called using different algorithms.
 
 A more detailed explanation can be found [here](https://github.com/bowhan/piPipes/wiki/Genome-seq).
 
+##CITATION
+
+Han, B. W., Wang, W., Zamore, P. D., and Weng, Z. (2015). [piPipes: a set of pipelines for piRNA and transposon analysis via small RNA-seq, RNA-seq, degradome- and CAGE-seq, ChIP-seq and genomic DNA sequencing. Bioinformatics 31, 593-595.](http://bioinformatics.oxfordjournals.org/content/31/4/593)
+
+##CONTACT
+
+Please send questions and bugs to piPipesQ@gmail.com.
+**For bugs reporting, please run `piPipes_debug` in a clean directory and paste stderr.**
+
+##LICENSE
+**piPipes** is released under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl.html).		
+
+##REFERENCES
+```
+[1] Li H and Durbin R. 2009. Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics 25: 1754-1760.
+[2] Langmead B, Trapnell C, Pop M and Salzberg SL. 2009. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol 10: R25.
+[3] Langmead B and Salzberg SL. 2012. Fast gapped-read alignment with Bowtie 2. Nat Methods 9: 357-359.
+[4] Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, Batut P, Chaisson M and Gingeras TR. 2013. STAR: ultrafast universal RNA-seq aligner. Bioinformatics 29: 15-21.
+[5] Trapnell C, Williams BA, Pertea G, Mortazavi A, Kwan G, van Baren MJ, Salzberg SL, Wold BJ and Pachter L. 2010.
+[6] Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation. Nat Biotechnol 28: 511-515.
+[7] Kent WJ, Zweig AS, Barber G, Hinrichs AS and Karolchik D. 2010. BigWig and BigBed: enabling browsing of large distributed datasets. Bioinformatics 26: 2204-2207.
+[8] Zhang Y et al. 2008. Model-based analysis of ChIP-Seq (MACS). Genome Biol 9: R137.
+[9] Roberts A and Pachter L. 2013. Streaming fragment assignment for real-time analysis of sequencing experiments. Nat Methods 10: 71-73.
+[10] Grabherr MG et al. 2011. Full-length transcriptome assembly from RNA-Seq data without a reference genome. Nat Biotechnol 29: 644-652.
+[11] Karolchik D, Hinrichs AS, Furey TS, Roskin KM, Sugnet CW, Haussler D and Kent WJ. 2004. The UCSC Table Browser data retrieval tool. Nucleic Acids Res 32: D493-D496.
+[12] Cox MP, Peterson DA and Biggs PJ. 2010. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. BMC Bioinformatics 11: 485.
+[13] HTSeq: Analysing high-throughput sequencing data with Python. [http://www-huber.embl.de/users/anders/HTSeq/]
+[14] Keane TM, Wong K and Adams DJ. 2013. RetroSeq: transposable element discovery from next-generation sequencing data. Bioinformatics 29: 389-390.
+[15] Hormozdiari F, Hajirasouliha I, Dao P, Hach F, Yorukoglu D, Alkan C, Eichler EE and Sahinalp SC. 2010. Next-generation VariationHunter: combinatorial algorithms for transposon insertion discovery. Bioinformatics 26: i350-i357.
+[16] Pohl, A. & Beato, M. bwtool: a tool for bigWig files. Bioinformatics (2014).
+[17] Zhang, H., Meltzer, P. & Davis, S. RCircos: an R package for Circos 2D track plots. BMC Bioinformatics 14, 244 (2013).
+```
+
 ## CHANGES/NOTES FOR THE ORIGINAL PIPIPES (https://github.com/bowhan/piPipes)
 
 ### Install piPipes - commit c93bde3; https://github.com/bowhan/piPipes
@@ -243,37 +276,4 @@ pkgTest ("gdata")
 pkgTest ("labeling")
 pkgTest ("RCircos")
 BiocManager::install("cummeRbund")
-```
-
-##CITATION
-
-Han, B. W., Wang, W., Zamore, P. D., and Weng, Z. (2015). [piPipes: a set of pipelines for piRNA and transposon analysis via small RNA-seq, RNA-seq, degradome- and CAGE-seq, ChIP-seq and genomic DNA sequencing. Bioinformatics 31, 593-595.](http://bioinformatics.oxfordjournals.org/content/31/4/593)
-
-##CONTACT
-
-Please send questions and bugs to piPipesQ@gmail.com.
-**For bugs reporting, please run `piPipes_debug` in a clean directory and paste stderr.**
-
-##LICENSE
-**piPipes** is released under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl.html).		
-
-##REFERENCES
-```
-[1] Li H and Durbin R. 2009. Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics 25: 1754-1760.
-[2] Langmead B, Trapnell C, Pop M and Salzberg SL. 2009. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol 10: R25.
-[3] Langmead B and Salzberg SL. 2012. Fast gapped-read alignment with Bowtie 2. Nat Methods 9: 357-359.
-[4] Dobin A, Davis CA, Schlesinger F, Drenkow J, Zaleski C, Jha S, Batut P, Chaisson M and Gingeras TR. 2013. STAR: ultrafast universal RNA-seq aligner. Bioinformatics 29: 15-21.
-[5] Trapnell C, Williams BA, Pertea G, Mortazavi A, Kwan G, van Baren MJ, Salzberg SL, Wold BJ and Pachter L. 2010.
-[6] Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation. Nat Biotechnol 28: 511-515.
-[7] Kent WJ, Zweig AS, Barber G, Hinrichs AS and Karolchik D. 2010. BigWig and BigBed: enabling browsing of large distributed datasets. Bioinformatics 26: 2204-2207.
-[8] Zhang Y et al. 2008. Model-based analysis of ChIP-Seq (MACS). Genome Biol 9: R137.
-[9] Roberts A and Pachter L. 2013. Streaming fragment assignment for real-time analysis of sequencing experiments. Nat Methods 10: 71-73.
-[10] Grabherr MG et al. 2011. Full-length transcriptome assembly from RNA-Seq data without a reference genome. Nat Biotechnol 29: 644-652.
-[11] Karolchik D, Hinrichs AS, Furey TS, Roskin KM, Sugnet CW, Haussler D and Kent WJ. 2004. The UCSC Table Browser data retrieval tool. Nucleic Acids Res 32: D493-D496.
-[12] Cox MP, Peterson DA and Biggs PJ. 2010. SolexaQA: At-a-glance quality assessment of Illumina second-generation sequencing data. BMC Bioinformatics 11: 485.
-[13] HTSeq: Analysing high-throughput sequencing data with Python. [http://www-huber.embl.de/users/anders/HTSeq/]
-[14] Keane TM, Wong K and Adams DJ. 2013. RetroSeq: transposable element discovery from next-generation sequencing data. Bioinformatics 29: 389-390.
-[15] Hormozdiari F, Hajirasouliha I, Dao P, Hach F, Yorukoglu D, Alkan C, Eichler EE and Sahinalp SC. 2010. Next-generation VariationHunter: combinatorial algorithms for transposon insertion discovery. Bioinformatics 26: i350-i357.
-[16] Pohl, A. & Beato, M. bwtool: a tool for bigWig files. Bioinformatics (2014).
-[17] Zhang, H., Meltzer, P. & Davis, S. RCircos: an R package for Circos 2D track plots. BMC Bioinformatics 14, 244 (2013).
 ```
